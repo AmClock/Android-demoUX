@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/layoutWrap"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".view.JoinView"
+    xmlns:tools="http://schemas.android.com/tools">
+    <EditText android:id="@+id/ip_id" style="@style/nomalET" android:hint="ID" />
+    <EditText android:id="@+id/ip_pwd" style="@style/nomalET" android:hint="Password" android:inputType="textPassword" android:password="false"/>
+    <EditText android:id="@+id/ip_name" style="@style/nomalET" android:hint="Name" />
+    <Button android:id="@+id/joinBtn" style="@style/nomalBtn" android:text="Join" />
+</LinearLayout>

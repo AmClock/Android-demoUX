@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layoutWrap"
+    android:id="@+id/listTemp"
+    android:layout_height="300dp"
+    android:layout_margin="10dp"
+    >
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY" />
+    <TextView android:id="@+id/tv_no" style="@style/nomalTV"/>
+    <TextView android:id="@+id/tv_name" style="@style/nomalTV"/>
+    <TextView android:id="@+id/tv_num" style="@style/nomalTV"/>
+    <TextView android:id="@+id/tv_regdate" style="@style/nomalTV"/>
+</LinearLayout>

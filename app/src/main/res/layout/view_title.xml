@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layoutWrap"
+    tools:context=".view.TitleView">
+    <Button android:id="@+id/goLoginBtn" style="@style/nomalBtn" android:text="Login" />
+    <Button android:id="@+id/goJoinBtn" style="@style/nomalBtn" android:text="Join" />
+</LinearLayout>
