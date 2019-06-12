@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/layoutWrap"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.DetailView">
+    <ImageView
+        android:id="@+id/dt_iv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+    <TextView android:id="@+id/dt_no" style="@style/nomalTV"/>
+    <TextView android:id="@+id/dt_name" style="@style/nomalTV"/>
+    <TextView android:id="@+id/dt_num" style="@style/nomalTV"/>
+    <TextView android:id="@+id/dt_regdate" style="@style/nomalTV"/>
+</LinearLayout>

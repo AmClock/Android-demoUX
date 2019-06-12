@@ -2,6 +2,7 @@ package com.example.demohf.local.interator;
 
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.example.demohf.local.vo.Result;
 import com.example.demohf.local.vo.Server;
@@ -15,13 +16,28 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * @file LoginInterator.java
+ * @author park
+ */
 public class LoginInterator extends AsyncTask<String, Void, Result> {
 
+    private String TAG = "LOGIN_ASYNC_TASK";
+
+    /**
+     * @name doInBackground
+     * @param strings - String[]
+     * @throws ConnectException
+     * @throws JSONException
+     * @return Result - boolean
+     */
     @Override
     protected Result doInBackground(String... strings) {
+
         @Nullable
         String strurl = strings[0];
         String line;
+
         try {
             URL url = new URL(strurl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -32,6 +48,7 @@ public class LoginInterator extends AsyncTask<String, Void, Result> {
                 con.connect();
             } catch (ConnectException e) {
                 e.printStackTrace();
+                Log.e(TAG, "ConnectException");
                 return new Result("false");
             }//ConnectException end
 
@@ -52,11 +69,13 @@ public class LoginInterator extends AsyncTask<String, Void, Result> {
                 return new Result(jo.getString("result"));
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.e(TAG, "JSONException");
                 return new Result("false");
             }//JSONException end
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e(TAG, "Exception");
             return new Result("false");
         } // Exception end
 

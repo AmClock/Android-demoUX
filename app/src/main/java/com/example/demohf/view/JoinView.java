@@ -13,6 +13,10 @@ import com.example.demohf.R;
 import com.example.demohf.contract.JoinContract;
 import com.example.demohf.presenter.JoinPresenter;
 
+/**
+ * @file JoinView.java
+ * @author park
+ */
 public class JoinView extends AppCompatActivity implements JoinContract.JoinView {
 
     private String TAG = "JOIN_VIEW";
@@ -29,6 +33,9 @@ public class JoinView extends AppCompatActivity implements JoinContract.JoinView
         init();
     }
 
+    /**
+     * @name init
+     */
     @Override
     public void init() {
         for (int i = 0; i < ipId.length; i++) {
@@ -46,6 +53,10 @@ public class JoinView extends AppCompatActivity implements JoinContract.JoinView
         });
     }
 
+    /**
+     * @name onError
+     * @param msg - String
+     */
     @Override
     public void onError(String msg) {
         Toast.makeText(this, msg + "_ERROR", Toast.LENGTH_LONG).show();

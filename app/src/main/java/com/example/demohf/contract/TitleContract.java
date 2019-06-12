@@ -1,10 +1,10 @@
 package com.example.demohf.contract;
 
+/**
+ * @file TitleContract.java
+ * @author park
+ */
 public interface TitleContract {
-
-    interface TitlePresenter {
-
-    }
 
     interface TitleView {
         void init();

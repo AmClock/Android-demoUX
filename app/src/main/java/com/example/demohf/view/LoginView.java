@@ -13,6 +13,10 @@ import com.example.demohf.R;
 import com.example.demohf.contract.LoginContract;
 import com.example.demohf.presenter.LoginPresenter;
 
+/**
+ * @file LoginView.java
+ * @author park
+ */
 public class LoginView extends AppCompatActivity implements LoginContract.LoginView {
 
     private String TAG = "LOGIN_VIEW";
@@ -28,6 +32,9 @@ public class LoginView extends AppCompatActivity implements LoginContract.LoginV
         init();
     }
 
+    /**
+     * @name init
+     */
     @Override
     public void init() {
         presenter = new LoginPresenter(this);
@@ -43,11 +50,17 @@ public class LoginView extends AppCompatActivity implements LoginContract.LoginV
                     *  DO Tread  !! forget it
                     */
                    startActivity( new Intent(LoginView.this,MainView.class));
-                }
+                }else{
+                   onError("NETWORK");
+               }
             }
         });
     }
 
+    /**
+     * @name onError
+     * @param msg - String
+     */
     @Override
     public void onError(String msg) {
         Toast.makeText(this , msg + "_ERROR" ,Toast.LENGTH_LONG).show();

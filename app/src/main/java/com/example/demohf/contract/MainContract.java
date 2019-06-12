@@ -2,6 +2,10 @@ package com.example.demohf.contract;
 
 import com.example.demohf.local.adapter.StoreListAdapter;
 
+/**
+ * @file MainContract.java
+ * @author park
+ */
 public interface MainContract {
 
     interface MainPresenter {

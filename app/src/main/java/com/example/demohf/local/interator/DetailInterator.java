@@ -4,46 +4,39 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.example.demohf.local.vo.Server;
 import com.example.demohf.local.vo.Store;
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
-/**
- * @file StoreInterator.java
- * @author park
- */
-public class StoreInterator extends AsyncTask<String, Void, ArrayList<Store>> {
+public class DetailInterator extends AsyncTask<String, Void, Store> {
 
-    private String TAG = "STORE_ASYNC_TASK";
+    private String TAG = "DETAIL_ASYNC_TASK";
 
     /**
      * @name doInBackground
      * @param strings - String[]
      * @throws ConnectException
      * @throws JSONException
-     * @return ArrayList<Store>
+     * @return Store
      */
     @Override
-    protected ArrayList<Store> doInBackground(String... strings) {
+    protected Store doInBackground(String... strings) {
         @Nullable
         String strUrl = strings[0];
         String line;
-        ArrayList<Store> list = new ArrayList<>();
         try {
             URL url = new URL(strUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
             try {
                 con.setConnectTimeout(Server.CONNECT_TIME_OUT);
                 con.setReadTimeout(Server.READ_TIME_OUT);
@@ -51,58 +44,43 @@ public class StoreInterator extends AsyncTask<String, Void, ArrayList<Store>> {
                 con.connect();
             } catch (ConnectException e) {
                 e.printStackTrace();
-                Log.e(TAG, "ConnectException");
                 return null;
             }
-
             InputStreamReader isr = new InputStreamReader(con.getInputStream());
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
-
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-
             br.close();
             isr.close();
             con.disconnect();
 
             try {
-
-                JSONArray ja = new JSONArray(sb.toString());
-                for (int i = 0; i < ja.length(); i++) {
-                    JSONObject jo = ja.getJSONObject(i);
-                    list.add(new Store(
-                            Integer.parseInt(jo.getString("no")),
-                            jo.getString("name"),
-                            Integer.parseInt(jo.getString("num")),
-                            changeBit(jo.getString("img")),
-                            jo.getString("regdate")
-                    ));
-                }
-
-                return list;
+                JSONObject jo = new JSONObject(sb.toString());
+                return new Store(Integer.parseInt(jo.getString("no")),
+                        jo.getString("name"),
+                        Integer.parseInt(jo.getString("num")),
+                        changeBit(jo.getString("img")),
+                        jo.getString("regdate")
+                        );
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.e(TAG, "JSONException");
                 return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e(TAG, "Exception");
             return null;
         }
     }
 
     /**
-     * @name changeBit
+     * @namw changeBit
      * @param src - String
      * @return Bitmap
      */
     private Bitmap changeBit(String src) {
-
         try {
-            // src change
             URL url = new URL(src);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             try {
@@ -110,17 +88,18 @@ public class StoreInterator extends AsyncTask<String, Void, ArrayList<Store>> {
                 con.setReadTimeout(Server.READ_TIME_OUT);
                 con.setConnectTimeout(Server.CONNECT_TIME_OUT);
                 con.connect();
-                InputStream is = con.getInputStream();
-                is.close();
-                con.disconnect();
-                return BitmapFactory.decodeStream(is);
             } catch (ConnectException e) {
                 e.printStackTrace();
                 return null;
             }
+            InputStream is = con.getInputStream();
+            is.close();
+            con.disconnect();
+            return BitmapFactory.decodeStream(is);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 }

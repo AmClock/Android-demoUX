@@ -4,6 +4,10 @@ import android.graphics.Bitmap;
 
 import java.sql.Timestamp;
 
+/**
+ * @file Store.java
+ * @author park
+ */
 public class Store {
     private int no, num;
     private String name, img;

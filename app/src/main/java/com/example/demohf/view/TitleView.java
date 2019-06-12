@@ -10,6 +10,10 @@ import android.widget.Button;
 import com.example.demohf.R;
 import com.example.demohf.contract.TitleContract;
 
+/**
+ * @file TitleView.java
+ * @author park
+ */
 public class TitleView extends AppCompatActivity implements TitleContract.TitleView  , View.OnClickListener {
 
     private Integer[] btnId = {R.id.goJoinBtn , R.id.goLoginBtn};
@@ -21,22 +25,29 @@ public class TitleView extends AppCompatActivity implements TitleContract.TitleV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_title);
         init();
-    }
+    }//onCreate end
 
+    /**
+     * @name init
+     */
     @Override
     public void init() {
         for(int i = 0 ; i < btnId.length ; i++){
             btnArry[i] = (Button)findViewById(btnId[i]);
             btnArry[i].setOnClickListener(this);
         }
-    }
+    }//init end
 
+    /**
+     * @name onClick
+     * @param v - View
+     */
     @Override
     public void onClick(View v) {
         startActivity(new Intent(this ,
                 v.getId() == R.id.goLoginBtn ? LoginView.class : JoinView.class
                 ));
         finish();
-    }
+    }//onClick end
 
-}
+}//TitleView end

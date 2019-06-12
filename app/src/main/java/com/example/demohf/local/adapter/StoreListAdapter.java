@@ -15,15 +15,30 @@ import com.example.demohf.view.DetailView;
 
 import java.util.ArrayList;
 
+/**
+ * @file StoreListAdapter.java
+ * @author park
+ */
 public class StoreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<Store> list;
 
+    /**
+     * @name StoreListAdapter
+     * @param list - ArrayList<Store>
+     * add data
+     */
     public StoreListAdapter(ArrayList<Store> list){
         this.list = list;
         notifyDataSetChanged();
     }
 
+    /**
+     * onCreateViewHolder
+     * @param viewGroup
+     * @param i - int
+     * @return RecyclerView.ViewHolder
+     */
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -31,6 +46,11 @@ public class StoreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return new StoreHolder(v);
     }
 
+    /**
+     * @name onBindViewHolder
+     * @param viewHolder - RecyclerView.ViewHolder
+     * @param i - int
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder,final int i) {
         StoreHolder holder = (StoreHolder) viewHolder;
@@ -50,6 +70,10 @@ public class StoreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         });
     }
 
+    /**
+     * @name getItemCount
+     * @return int
+     */
     @Override
     public int getItemCount() {
         return list.size();

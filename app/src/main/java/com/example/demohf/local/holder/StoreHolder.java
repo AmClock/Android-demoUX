@@ -10,12 +10,20 @@ import android.widget.TextView;
 
 import com.example.demohf.R;
 
+/**
+ * @file StoreHolder
+ * @author park
+ */
 public class StoreHolder extends RecyclerView.ViewHolder {
 
     public TextView no, name, num, regdate;
     public ImageView iv;
     public LinearLayout card;
 
+    /**
+     * @name StoreHolder
+     * @param itemView - View
+     */
     public StoreHolder(@NonNull View itemView) {
         super(itemView);
         no = itemView.findViewById(R.id.tv_no);

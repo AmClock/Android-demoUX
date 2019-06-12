@@ -2,6 +2,7 @@ package com.example.demohf.local.interator;
 
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.example.demohf.local.vo.Result;
 import com.example.demohf.local.vo.Server;
@@ -15,7 +16,21 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * @file JoinInterator.java
+ * @author park
+ */
 public class JoinInterator extends AsyncTask<String, Void, Result> {
+
+    private String TAG = "JOIN_ASYNC_TASK";
+
+    /**
+     * @name doInBackground
+     * @param strings - String[]
+     * @throws ConnectException
+     * @throws JSONException
+     * @return Result - boolean
+     */
     @Override
     protected Result doInBackground(String... strings) {
 
@@ -33,6 +48,7 @@ public class JoinInterator extends AsyncTask<String, Void, Result> {
                 con.connect();
             } catch (ConnectException e) {
                 e.printStackTrace();
+                Log.e(TAG, "ConnectException");
                 return new Result("false");
             }
             InputStreamReader isr = new InputStreamReader(con.getInputStream());
@@ -52,11 +68,13 @@ public class JoinInterator extends AsyncTask<String, Void, Result> {
                 return new Result(jo.getString("result"));
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.e(TAG, "JSONException");
                 return new Result("false");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e(TAG, "Exception");
             return new Result("false");
         }
     }
